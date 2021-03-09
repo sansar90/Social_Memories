@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import UserModal from "../models/user.js";
 
-const secret = 'y9XauSSqo_eodSJcBhss1eTd';
+const secret = 'test';
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
@@ -32,8 +32,6 @@ export const signup = async (req, res) => {
     const oldUser = await UserModal.findOne({ email });
 
     if (oldUser) return res.status(400).json({ message: "User already exists" });
-    if (password !== confirmPassword) return res.status(400).json({message:"Password is not correct"});
-
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
