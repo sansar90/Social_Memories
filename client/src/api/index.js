@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API= axios.create({baseURL: "https://memories-bringback.herokuapp.com"});
 
-//const API = axios.create({ baseURL: 'https://memories-backend.zeet.app' });
+//const API = axios.create({ baseURL: 'http://localhost:3000' });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
@@ -16,6 +16,7 @@ API.interceptors.request.use((req) => {
 export const fetchPosts = () => API.get('/posts');
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const dislikePost = (id) => API.patch(`/posts/${id}/dislikePost`);
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 

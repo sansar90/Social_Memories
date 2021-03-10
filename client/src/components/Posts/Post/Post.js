@@ -1,13 +1,15 @@
 import React from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
+import ThumbDownAltOutlined from '@material-ui/icons/ThumbDownAltOutlined';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import { likePost, deletePost } from '../../../actions/posts';
+import { likePost, deletePost, dislikePost } from '../../../actions/posts';
 import useStyles from './styles';
 
 const Post = ({ post, setCurrentId }) => {
@@ -26,6 +28,19 @@ const Post = ({ post, setCurrentId }) => {
     }
 
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+  };
+
+  const DisLikes = () => {
+    if (post.dislikes && post.dislikes.length > 0) {
+      return post.dislikes.find((dislike) => dislike === (user?.result?.googleId || user?.result?._id))
+        ? (
+          <><ThumbDownAltIcon fontSize="small" />&nbsp;{post.dislikes.length > 2 ? `You and ${post.dislikes.length - 1} others` : `${post.dislikes.length} dislike${post.dislikes.length > 1 ? 's' : ''}` }</>
+        ) : (
+          <><ThumbDownAltOutlined fontSize="small" />&nbsp;{post.dislikes.length} {post.dislikes.length === 1 ? 'DisLike' : 'DisLikes'}</>
+        );
+    }
+
+    return <><ThumbDownAltOutlined fontSize="small" />&nbsp;DisLike</>;
   };
 
   return (
@@ -52,6 +67,9 @@ const Post = ({ post, setCurrentId }) => {
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
           <Likes />
+        </Button>
+        <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(dislikePost(post._id))}>
+          <DisLikes />
         </Button>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
         <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
