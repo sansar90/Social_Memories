@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API= axios.create({baseURL: "https://memories-bringback.herokuapp.com/posts"});
+const API= axios.create({baseURL: "https://memories-bringback.herokuapp.com"});
 
 //const API = axios.create({ baseURL: 'https://memories-backend.zeet.app' });
 
