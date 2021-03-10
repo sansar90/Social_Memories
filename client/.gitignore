@@ -1,5 +1,5 @@
 clientId="656509629849-tfl52q7r0dur813ga2038f7lav3b1m1j.apps.googleusercontent.com"
-
+baseURL: "https://memories-bringback.herokuapp.com/posts"
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies

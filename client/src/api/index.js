@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API= axios.create({baseURL: 'http://localhost:5000'});
+const API= axios.create({baseURL: "https://memories-bringback.herokuapp.com/posts"});
 
 //const API = axios.create({ baseURL: 'https://memories-backend.zeet.app' });
 
@@ -12,7 +12,7 @@ API.interceptors.request.use((req) => {
     return req;
   });
 
-const url="https://memories-bringback.herokuapp.com/posts";
+//const url="https://memories-bringback.herokuapp.com/posts";
 export const fetchPosts = () => API.get('/posts');
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
