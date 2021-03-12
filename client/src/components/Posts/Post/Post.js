@@ -31,7 +31,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const DisLikes = () => {
-    if (post.dislikes && post.dislikes.length > 0) {
+    if (post.dislike && post.dislikes.length > 0) {
       return post.dislikes.find((dislike) => dislike === (user?.result?.googleId || user?.result?._id))
         ? (
           <><ThumbDownAltIcon fontSize="small" />&nbsp;{post.dislikes.length > 2 ? `You and ${post.dislikes.length - 1} others` : `${post.dislikes.length} dislike${post.dislikes.length > 1 ? 's' : ''}` }</>
