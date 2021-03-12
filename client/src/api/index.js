@@ -10,9 +10,9 @@ API.interceptors.request.use((req) => {
     }
   
     return req;
-  });
+});
 
-//const url="https://memories-bringback.herokuapp.com/posts";
+
 export const fetchPosts = () => API.get('/posts');
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
