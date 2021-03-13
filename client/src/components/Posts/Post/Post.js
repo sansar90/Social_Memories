@@ -31,7 +31,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const DisLikes = () => {
-    if (post.dislike && post.dislikes.length > 0) {
+    if (post.dislikes.length > 0) {
       return post.dislikes.find((dislike) => dislike === (user?.result?.googleId || user?.result?._id))
         ? (
           <><ThumbDownAltIcon fontSize="small" />&nbsp;{post.dislikes.length > 2 ? `You and ${post.dislikes.length - 1} others` : `${post.dislikes.length} dislike${post.dislikes.length > 1 ? 's' : ''}` }</>
@@ -47,8 +47,9 @@ const Post = ({ post, setCurrentId }) => {
     <Card className={classes.card}>
       <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
       <div className={classes.overlay}>
-        <Typography variant="h6">{post.name}</Typography>
+        <Typography variant="h6">created by {post.creator}</Typography>
         <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+        
       </div>
       {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
       <div className={classes.overlay2}>
